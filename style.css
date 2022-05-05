@@ -42,7 +42,7 @@ nav ul li{
 
 /* Game Container */
 .gameContainer{
-    background-color:aquamarine;
+    background-color:rgba(127, 255, 212, 0.458);
     display:flex;
     padding: 40px 180px;
 }
@@ -51,7 +51,7 @@ nav ul li{
     width:30vw;
     margin-right: 40px;
     padding: 40px;
-    background-color: cadetblue;
+    /* background-color: cadetblue; */
     display: grid;
     grid-template-columns: repeat(3,20vh);
     grid-template-rows: repeat(3,20vh);
@@ -68,7 +68,7 @@ nav ul li{
 }
 
 .box:hover{
-    background-color: rgba(0, 146, 156, 0.505);
+    background-color: rgba(0, 146, 156, 0.415);
 }
 
 .bt-0 {
@@ -87,8 +87,18 @@ nav ul li{
 .gameInfo{
     width:60vw;
     padding:40px;
-    background-color: darkseagreen;
+    /* background-color: darkseagreen; */
     font-family: 'Baloo Thambi 2', cursive;
+}
+
+
+.extra {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.extra button{
+    width: 50px;
 }
 
 .imgBox img {

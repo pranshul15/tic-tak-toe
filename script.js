@@ -9,35 +9,63 @@ let turn = "X";
 const changeTurn = ()=>{
     return (turn==="X")? "O":"X";
 }
-
+let boxValues = [];
 
 // Function to check for a win
 const checkWin = ()=>{
+    // horizontal 1
+    if((boxValues[0]==boxValues[1]) && (boxValues[1]==boxValues[2])){
+        return boxValues[0];
+    }
+    // horizontal 2
+    if((boxValues[3]==boxValues[4]) && (boxValues[4]==boxValues[5])){
+        return boxValues[3];
+    }
+    // horizontal 3
+    if((boxValues[6]==boxValues[7]) && (boxValues[7]==boxValues[8])){
+        return boxValues[6];
+    }
+    // vertical 1
+    if((boxValues[0]==boxValues[3]) && (boxValues[3]==boxValues[6])){
+        return boxValues[0];
+    }
+    // vertical 2
+    if((boxValues[1]==boxValues[4]) && (boxValues[4]==boxValues[7])){
+        return boxValues[1];
+    }
+    // vertical 3
+    if((boxValues[2]==boxValues[5]) && (boxValues[5]==boxValues[8])){
+        return boxValues[2];
+    }
+    // diagonal left to right
+    if((boxValues[0]==boxValues[4]) && (boxValues[4]==boxValues[8])){
+        return boxValues[0];
+    }
+    // diagonal right to left
+    if((boxValues[2]==boxValues[4]) && (boxValues[4]==boxValues[6])){
+        return boxValues[2];
+    }
+    return "NO";
+}
 
+const afterWin = (param)=> {
+    document.getElementById('info').innerText = param + " is Winner!";
+    
 }
 
 // Game Logic
 let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach((element) =>{
-    let boxText = document.querySelector('.boxValue');
-    // console.log(element);
-    element.addEventListener('click',(boxText)=>{
-        if(boxText.innerText===undefined){
-            console.log("kuch bhi nahi hai");
-            element.innerText = turn;
-            console.log(element.innerText);
-            turn = changeTurn();
+    element.addEventListener('click',(e)=>{
+        if(element.innerHTML!=="X" && element.innerHTML!=="O"){
+            element.innerText = turn; // setting the value inside
+            boxValues[parseInt(element.id)]=turn; // setting value inside code
+            turn = changeTurn(); // changing the turn
             ting.play();
-            // checkWin();
+            if(checkWin()!="NO"){
+                afterWin(checkWin());
+            }
             document.getElementById('info').innerText = "Turn for " + turn;
         }
-        // console.log(boxText.innerText);
-        // if(boxText.innerText === ''){
-        //     boxText.innerText = turn;
-        //     changeTurn();
-        //     ting.play();
-        //     checkWin();
-        //     document.getElementsByClassName(turn)[0].innerText = "Turn for" + turn;
-        // }
     })
 });
